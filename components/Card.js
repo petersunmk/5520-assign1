@@ -1,34 +1,22 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const Card = (props) => {
   return (
-    <View style={styles.card}>
-      <Text style={styles.cardTitle}>{props.title}</Text>
-    </View>
+    <View style={{ ...styles.card, ...props.style }}>{props.children}</View>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderRadius: 2,
-    borderColor: "#ddd",
-    borderBottomWidth: 0,
-    shadowColor: "#000",
+    shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
-  },
-  cardTitle: {
-    fontSize: 20,
-    textAlign: "center",
-    marginVertical: 10,
+    shadowRadius: 6,
+    shadowOpacity: 0.26,
+    elevation: 8,
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
   },
 });
 

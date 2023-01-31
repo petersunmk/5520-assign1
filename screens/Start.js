@@ -1,33 +1,7 @@
-// import React from "react";
-// import { View, Text, StyleSheet, Button } from "react-native";
-// import Color from "../helper/Color";
-// import Card from "../components/Card";
-
-// const StartingScreen = () => {
-//   return (
-//     <View style={styles.screen}>
-//       <Text style={styles.text}>Start Screen</Text>
-//       <Card title="Sign In" />
-//       <Button title="Sign Up" color={Color.primary} onPress={() => {}} />
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   screen: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-//   text: {
-//     fontSize: 18,
-//   },
-// });
-
-// export default StartingScreen;
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import Color from "../helper/Color";
+import Card from "../components/Card";
 
 const StartingScreen = ({
   email,
@@ -37,8 +11,7 @@ const StartingScreen = ({
   onEmailChange,
   onPhoneChange,
   onSignup,
-  handleReset,
-  handleSignup,
+  onReset,
   onEmailValidityChange,
   onPhoneValidityChange,
 }) => {
@@ -79,9 +52,43 @@ const StartingScreen = ({
 
     onPhoneValidityChange(true);
   };
-
+  // return (
+  //   <View style={styles.card}>
+  //     <View>
+  //       <Text style={styles.text}>Email</Text>
+  //       <TextInput
+  //         style={styles.input}
+  //         value={email}
+  //         onChangeText={onEmailChange}
+  //         onBlur={() => validateEmail(email)}
+  //       />
+  //       {!emailValid && <Text style={styles.errorText}>{emailError}</Text>}
+  //     </View>
+  //     <View>
+  //       <Text style={styles.text}>Phone Number</Text>
+  //       <TextInput
+  //         style={styles.input}
+  //         value={phone}
+  //         onChangeText={onPhoneChange}
+  //         onBlur={() => validatePhone(phone)}
+  //       />
+  //       {!phoneValid && <Text style={styles.errorText}>{phoneError}</Text>}
+  //     </View>
+  //     <View style={styles.buttonContainer}>
+  //       <Button title="Reset" onPress={onReset} />
+  //       <Button
+  //         title="Sign up"
+  //         onPress={() => {
+  //           validateEmail(email);
+  //           validatePhone(phone);
+  //           onSignup();
+  //         }}
+  //       />
+  //     </View>
+  //   </View>
+  // );
   return (
-    <View style={styles.card}>
+    <Card style={styles.card}>
       <View>
         <Text style={styles.text}>Email</Text>
         <TextInput
@@ -103,18 +110,17 @@ const StartingScreen = ({
         {!phoneValid && <Text style={styles.errorText}>{phoneError}</Text>}
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Reset" onPress={handleReset} />
+        <Button title="Reset" onPress={onReset} />
         <Button
           title="Sign up"
-          onPress={
-            (handleSignup,
-            () => {
-              validateEmail(email), validatePhone(phone);
-            })
-          }
+          onPress={() => {
+            validateEmail(email);
+            validatePhone(phone);
+            onSignup();
+          }}
         />
       </View>
-    </View>
+    </Card>
   );
 };
 
@@ -125,9 +131,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   card: {
+    color: Color.primary,
     width: 300,
     maxWidth: "80%",
     padding: 1,
+    marginTop: 100,
   },
   text: {
     color: Color.primary,

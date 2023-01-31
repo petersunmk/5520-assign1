@@ -1,42 +1,44 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { StyleSheet, View, Text, Modal, Button } from "react-native";
+
 import Color from "../helper/Color";
 import Card from "../components/Card";
 
 const ConfirmScreen = (props) => {
   return (
-    <View style={styles.container}>
-      <Card title="Confirm Details" />
-      <Text style={styles.text}>
-        Are you sure you want to proceed with the following details:
-      </Text>
-      <Text style={styles.text}>{props.enteredText}</Text>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Confirm"
-          color={Color.primary}
-          onPress={props.onConfirm}
-        />
-        <Button title="Cancel" color={Color.danger} onPress={props.onCancel} />
+    <Modal animationType="slide">
+      <View style={styles.screen}>
+        <Card>
+          <Text style={styles.text}>Please confirm your input</Text>
+          <Text>Email: {props.email}</Text>
+          <Text>Phone: {props.phone}</Text>
+          <View style={styles.buttons}>
+            <Button title="Back to Start" onPress={props.onBackToStart} />
+            <Button title="Confirm" onPress={props.onConfirm} />
+            <Button title="Finish Later" onPress={props.onFinishLater} />
+          </View>
+        </Card>
       </View>
-    </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: Color.secondary,
+  },
+  buttons: {
+    flexDirection: "column",
+    justifyContent: "center",
+    width: "70%",
+    padding: 10,
   },
   text: {
     fontSize: 20,
-    marginVertical: 10,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "60%",
+    color: Color.primary,
   },
 });
 

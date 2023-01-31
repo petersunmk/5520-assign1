@@ -1,28 +1,48 @@
 import React from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
-import TextLabel from "../components/Text";
-import Color from "../helper/Color";
-import Card from "../components/Card";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-const FinishScreen = ({ onRestart }) => (
-  <View style={styles.container}>
-    <Text style={styles.title}>All done!</Text>
+import Card from "../components/Card";
+import Color from "../helper/Color";
+
+const FinishScreen = (props) => {
+  return (
     <Card>
-      <TextLabel>Your information has been successfully submitted.</TextLabel>
-      <Button title="Restart" onPress={onRestart} color={Color.primary} />
+      <View style={styles.container}>
+        {props.finishLater ? (
+          <Text style={styles.message}>
+            Sorry to see you go, please come back later.
+          </Text>
+        ) : (
+          <Text style={styles.message}>
+            Thank you for signing up, here is the picture shown based on your
+            last digit phone No.
+          </Text>
+        )}
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Start Over"
+            color={Color.primary}
+            onPress={props.onReset}
+          />
+        </View>
+      </View>
     </Card>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    padding: 20,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: Color.secondary,
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 16,
+  message: {
+    fontSize: 18,
+    marginVertical: 10,
+  },
+  buttonContainer: {
+    marginTop: 20,
   },
 });
 
