@@ -42,8 +42,8 @@ export default function App() {
   };
 
   const handleReset = () => {
-    setEmail(" ");
-    setPhone(" ");
+    setEmail("");
+    setPhone("");
     setShowConfirm(false);
     setShowFinish(false);
     setFinishLater(false);

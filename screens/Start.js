@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import Color from "../helper/Color";
 import Card from "../components/Card";
@@ -6,6 +6,7 @@ import Card from "../components/Card";
 const StartingScreen = ({
   email,
   phone,
+
   emailValid,
   phoneValid,
   onEmailChange,
@@ -21,6 +22,7 @@ const StartingScreen = ({
   const validateEmail = (email) => {
     if (!email) {
       setEmailError("Email is required");
+
       onEmailValidityChange(false);
       return;
     }
@@ -35,6 +37,7 @@ const StartingScreen = ({
     }
 
     onEmailValidityChange(true);
+    setEmailError("");
   };
 
   const validatePhone = (phone) => {
@@ -51,7 +54,17 @@ const StartingScreen = ({
     }
 
     onPhoneValidityChange(true);
+    setPhoneError("");
   };
+
+  useEffect(() => {
+    if (emailValid && phoneValid) {
+      onSignup();
+      onEmailValidityChange(false);
+      onPhoneValidityChange(false);
+    }
+  }, [emailValid, phoneValid]);
+
   // return (
   //   <View style={styles.card}>
   //     <View>
@@ -95,7 +108,7 @@ const StartingScreen = ({
           style={styles.input}
           value={email}
           onChangeText={onEmailChange}
-          onBlur={() => validateEmail(email)}
+          // onBlur={() => validateEmail(email)}
         />
         {!emailValid && <Text style={styles.errorText}>{emailError}</Text>}
       </View>
@@ -105,18 +118,26 @@ const StartingScreen = ({
           style={styles.input}
           value={phone}
           onChangeText={onPhoneChange}
-          onBlur={() => validatePhone(phone)}
+          //onBlur={() => validatePhone(phone)}
         />
         {!phoneValid && <Text style={styles.errorText}>{phoneError}</Text>}
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Reset" onPress={onReset} />
+        <Button
+          title="Reset"
+          onPress={() => {
+            setEmailError("");
+            setPhoneError("");
+            onReset();
+          }}
+        />
         <Button
           title="Sign up"
           onPress={() => {
             validateEmail(email);
             validatePhone(phone);
-            onSignup();
+
+            //onSignup();
           }}
         />
       </View>
@@ -147,6 +168,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     padding: 2,
     marginBottom: 5,
+    textAlign: "center",
   },
   buttonContainer: {
     flexDirection: "row",
