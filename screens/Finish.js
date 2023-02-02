@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button, Image } from "react-native";
 
 import Card from "../components/Card";
 import Color from "../helper/Color";
-
+// two different images shown based on finishLater prop
 const FinishScreen = (props) => {
   var imageURL = "";
   var yourDigit = props.phone[props.phone.length - 1];
@@ -28,11 +28,12 @@ const FinishScreen = (props) => {
               Here is the picture shown based on the last digit of your input
               phone number
             </Text>
+            {/* picture shown based on last digit of input number */}
             <Image style={styles.image} source={{ uri: imageURL }} />
           </>
         )}
         <View style={styles.buttonContainer}>
-          <Button title="Start Over" onPress={props.onReset} />
+          <Button title="Start Again" onPress={props.onReset} />
         </View>
       </Card>
     </View>

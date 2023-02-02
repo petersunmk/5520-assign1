@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Modal, Button } from "react-native";
 
 import Color from "../helper/Color";
 import Card from "../components/Card";
-
+// confirm screen is shown in modal
 const ConfirmScreen = (props) => {
   return (
     <Modal visible={props.visible} animationType="slide">
@@ -14,7 +14,7 @@ const ConfirmScreen = (props) => {
           <Text style={styles.text2}> Phone:{props.phone} </Text>
 
           <View style={styles.buttons}>
-            <Button title="Back to Start" onPress={props.onBackToStart} />
+            <Button title="Go Back" onPress={props.onBackToStart} />
             <Button title="Confirm" onPress={props.onConfirm} />
             <Button title="Finish Later" onPress={props.onFinishLater} />
           </View>

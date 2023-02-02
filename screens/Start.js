@@ -17,7 +17,7 @@ const StartingScreen = ({
 }) => {
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
-
+  //email validation function and error message
   const validateEmail = (email) => {
     if (!email) {
       setEmailError("Email is required");
@@ -38,7 +38,7 @@ const StartingScreen = ({
     onEmailValidityChange(true);
     setEmailError("");
   };
-
+  //phone validation function and error message
   const validatePhone = (phone) => {
     if (!phone) {
       setPhoneError("Phone number is required");
