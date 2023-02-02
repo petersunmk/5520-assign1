@@ -65,8 +65,6 @@ export default function App() {
         style={styles.background}
       />
 
-      <Header appName={appName} />
-
       {/* conditionally render the screens;
       email and phone value and their status are passed to the screens */}
       {showConfirm ? (
@@ -86,18 +84,21 @@ export default function App() {
           onReset={handleReset}
         />
       ) : (
-        <StartingScreen
-          email={email}
-          phone={phone}
-          emailValid={emailValid}
-          phoneValid={phoneValid}
-          onEmailChange={setEmail}
-          onPhoneChange={setPhone}
-          onSignup={handleSignup}
-          onReset={handleReset}
-          onEmailValidityChange={setEmailValid}
-          onPhoneValidityChange={setPhoneValid}
-        />
+        <>
+          <Header appName={appName} />
+          <StartingScreen
+            email={email}
+            phone={phone}
+            emailValid={emailValid}
+            phoneValid={phoneValid}
+            onEmailChange={setEmail}
+            onPhoneChange={setPhone}
+            onSignup={handleSignup}
+            onReset={handleReset}
+            onEmailValidityChange={setEmailValid}
+            onPhoneValidityChange={setPhoneValid}
+          />
+        </>
       )}
     </SafeAreaView>
   );
