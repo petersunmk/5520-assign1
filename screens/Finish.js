@@ -6,55 +6,56 @@ import Color from "../helper/Color";
 
 const FinishScreen = (props) => {
   var imageURL = "";
-  var lastPhoneDigit = props.phone[props.phone.length - 1];
-  imageURL = `https://picsum.photos/id/${lastPhoneDigit}/${styles.image.width}/${styles.image.height}`;
+  var yourDigit = props.phone[props.phone.length - 1];
+  imageURL = `https://picsum.photos/id/${yourDigit}/${styles.image.width}/${styles.image.height}`;
 
   return (
-    <Card>
-      <View style={styles.container}>
+    <View>
+      <Card style={styles.card}>
         {props.finishLater ? (
-          <Text style={styles.message}>
-            Sorry to see you go, please come back later.
-          </Text>
+          <>
+            <Text style={styles.message}>Sorry to see you go... </Text>
+            <Text style={styles.message}>Please come back later.</Text>
+            <Image
+              style={styles.image}
+              source={require("../assets/unamusedFace.png")}
+            />
+          </>
         ) : (
           <>
-            <Text style={styles.message}>
-              Thank you for signing up, here is the picture shown based on your
-              last digit phone No.
+            <Text style={styles.message}>Thank you for signing up ^_^ </Text>
+            <Text style={styles.message2}>
+              Here is the picture shown based on the last digit of your input
+              phone number
             </Text>
             <Image style={styles.image} source={{ uri: imageURL }} />
-            {/* source={require("./image.png")}  */}
           </>
         )}
         <View style={styles.buttonContainer}>
-          <Button
-            title="Start Over"
-            color={Color.primary}
-            onPress={props.onReset}
-          />
+          <Button title="Start Over" onPress={props.onReset} />
         </View>
-      </View>
-    </Card>
+      </Card>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Color.secondary,
-  },
   message: {
     fontSize: 18,
     marginVertical: 10,
+    color: Color.text,
+    textAlign: "center",
   },
-  buttonContainer: {
-    marginTop: 20,
+  message2: {
+    fontSize: 16,
+    marginVertical: 10,
+    color: Color.text,
+    textAlign: "center",
   },
   image: {
     width: 200,
     height: 200,
+    alignSelf: "center",
   },
 });
 

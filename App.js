@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, SafeAreaView } from "react-native";
 
 import Color from "./helper/Color";
-import Card from "./components/Card";
+
 import StartingScreen from "./screens/Start";
 import ConfirmScreen from "./screens/Confirm";
 import FinishScreen from "./screens/Finish";
@@ -17,28 +17,33 @@ export default function App() {
   const [finishLater, setFinishLater] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
   const [phoneValid, setPhoneValid] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const handleSignup = () => {
     if (!emailValid || !phoneValid) {
       return;
     }
     setShowConfirm(true);
+    setVisible(true);
   };
 
   const handleBackToStart = () => {
     setShowConfirm(false);
     setShowFinish(false);
+    setVisible(false);
   };
 
   const handleConfirm = () => {
     setShowConfirm(false);
     setShowFinish(true);
+    setVisible(false);
   };
 
   const handleFinishLater = () => {
     setShowConfirm(false);
     setShowFinish(true);
     setFinishLater(true);
+    setVisible(false);
   };
 
   const handleReset = () => {
@@ -52,16 +57,21 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Header appName={appName} />
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Header appName={appName} />
+      </View>
       {showConfirm ? (
-        <ConfirmScreen
-          email={email}
-          phone={phone}
-          onBackToStart={handleBackToStart}
-          onConfirm={handleConfirm}
-          onFinishLater={handleFinishLater}
-        />
+        <View style={styles.modalContainer}>
+          <ConfirmScreen
+            email={email}
+            phone={phone}
+            onBackToStart={handleBackToStart}
+            onConfirm={handleConfirm}
+            visible={visible}
+            onFinishLater={handleFinishLater}
+          />
+        </View>
       ) : showFinish ? (
         <FinishScreen
           email={email}
@@ -83,15 +93,22 @@ export default function App() {
           onPhoneValidityChange={setPhoneValid}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Color.secondary,
+    backgroundColor: Color.primary,
     alignItems: "center",
     // justifyContent: "center",
+  },
+  headerContainer: {
+    //position: "relative",
+    zIndex: 1,
+  },
+  modalContainer: {
+    zIndex: -1,
   },
 });

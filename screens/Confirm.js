@@ -6,12 +6,13 @@ import Card from "../components/Card";
 
 const ConfirmScreen = (props) => {
   return (
-    <Modal animationType="slide">
+    <Modal visible={props.visible} animationType="slide">
       <View style={styles.screen}>
-        <Card>
-          <Text style={styles.text}>Please confirm your input</Text>
-          <Text>Email: {props.email}</Text>
-          <Text>Phone: {props.phone}</Text>
+        <Card style={styles.card}>
+          <Text style={styles.text}> Please confirm your input： </Text>
+          <Text style={styles.text2}> Email: {props.email} </Text>
+          <Text style={styles.text2}> Phone:{props.phone} </Text>
+
           <View style={styles.buttons}>
             <Button title="Back to Start" onPress={props.onBackToStart} />
             <Button title="Confirm" onPress={props.onConfirm} />
@@ -25,21 +26,27 @@ const ConfirmScreen = (props) => {
 
 const styles = StyleSheet.create({
   screen: {
-    flex: 1,
+    backgroundColor: Color.primary,
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Color.secondary,
+    flex: 1,
+    fullscreen: true,
   },
   buttons: {
     flexDirection: "column",
     justifyContent: "center",
-    width: "70%",
-    padding: 10,
+    width: "100%",
+    padding: 8,
   },
   text: {
     fontSize: 20,
-    color: Color.primary,
+    color: Color.text,
+    marginVertical: 10,
+    textAlign: "center",
+  },
+  text2: {
+    fontSize: 16,
+    color: Color.text,
+    textAlign: "center",
   },
 });
-
 export default ConfirmScreen;

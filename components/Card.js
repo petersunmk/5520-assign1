@@ -1,22 +1,22 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+
+import Color from "../helper/Color";
 
 const Card = (props) => {
-  return (
-    <View style={{ ...styles.card, ...props.style }}>{props.children}</View>
-  );
+  return <View style={[styles.card, props.style]}>{props.children}</View>;
 };
 
 const styles = StyleSheet.create({
   card: {
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    shadowOpacity: 0.26,
-    elevation: 8,
-    backgroundColor: "white",
-    padding: 20,
+    backgroundColor: Color.secondary,
     borderRadius: 10,
+    elevation: 5,
+    padding: 20,
+    width: 300,
+    maxWidth: "80%",
+    padding: 1,
+    marginTop: 45,
   },
 });
 

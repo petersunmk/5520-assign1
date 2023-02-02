@@ -1,5 +1,6 @@
 const Color = {
-  primary: "#4510ff",
-  secondary: "#dcd",
+  primary: "#C0D9D9",
+  secondary: "#CDCDCD",
+  text: "purple",
 };
 export default Color;

@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
+import Color from "../helper/Color";
 
 export default function Header({ appName }) {
   //console.log(appName);
@@ -11,11 +12,11 @@ export default function Header({ appName }) {
 }
 const styles = StyleSheet.create({
   header: {
-    color: "purple",
+    color: Color.text,
     borderColor: "rebeccapurple",
     borderWidth: 2,
     padding: 5,
     fontSize: 24,
-    marginTop: 20,
+    marginTop: 30,
   },
 });

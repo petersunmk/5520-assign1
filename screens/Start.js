@@ -6,7 +6,6 @@ import Card from "../components/Card";
 const StartingScreen = ({
   email,
   phone,
-
   emailValid,
   phoneValid,
   onEmailChange,
@@ -65,41 +64,6 @@ const StartingScreen = ({
     }
   }, [emailValid, phoneValid]);
 
-  // return (
-  //   <View style={styles.card}>
-  //     <View>
-  //       <Text style={styles.text}>Email</Text>
-  //       <TextInput
-  //         style={styles.input}
-  //         value={email}
-  //         onChangeText={onEmailChange}
-  //         onBlur={() => validateEmail(email)}
-  //       />
-  //       {!emailValid && <Text style={styles.errorText}>{emailError}</Text>}
-  //     </View>
-  //     <View>
-  //       <Text style={styles.text}>Phone Number</Text>
-  //       <TextInput
-  //         style={styles.input}
-  //         value={phone}
-  //         onChangeText={onPhoneChange}
-  //         onBlur={() => validatePhone(phone)}
-  //       />
-  //       {!phoneValid && <Text style={styles.errorText}>{phoneError}</Text>}
-  //     </View>
-  //     <View style={styles.buttonContainer}>
-  //       <Button title="Reset" onPress={onReset} />
-  //       <Button
-  //         title="Sign up"
-  //         onPress={() => {
-  //           validateEmail(email);
-  //           validatePhone(phone);
-  //           onSignup();
-  //         }}
-  //       />
-  //     </View>
-  //   </View>
-  // );
   return (
     <Card style={styles.card}>
       <View>
@@ -108,7 +72,6 @@ const StartingScreen = ({
           style={styles.input}
           value={email}
           onChangeText={onEmailChange}
-          // onBlur={() => validateEmail(email)}
         />
         {!emailValid && <Text style={styles.errorText}>{emailError}</Text>}
       </View>
@@ -118,7 +81,6 @@ const StartingScreen = ({
           style={styles.input}
           value={phone}
           onChangeText={onPhoneChange}
-          //onBlur={() => validatePhone(phone)}
         />
         {!phoneValid && <Text style={styles.errorText}>{phoneError}</Text>}
       </View>
@@ -136,8 +98,6 @@ const StartingScreen = ({
           onPress={() => {
             validateEmail(email);
             validatePhone(phone);
-
-            //onSignup();
           }}
         />
       </View>
@@ -151,15 +111,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  card: {
-    color: Color.primary,
-    width: 300,
-    maxWidth: "80%",
-    padding: 1,
-    marginTop: 100,
-  },
+
   text: {
-    color: Color.primary,
+    color: Color.text,
     fontSize: 18,
     marginBottom: 5,
   },
