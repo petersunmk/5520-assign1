@@ -58,7 +58,7 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <LinearGradient
         // Background Linear Gradient
         colors={[Color.primary, "transparent"]}
@@ -67,7 +67,7 @@ export default function App() {
 
       <Header appName={appName} />
 
-      {/* conditionally render the screens 
+      {/* conditionally render the screens;
       email and phone value and their status are passed to the screens */}
       {showConfirm ? (
         <ConfirmScreen
@@ -99,7 +99,7 @@ export default function App() {
           onPhoneValidityChange={setPhoneValid}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 

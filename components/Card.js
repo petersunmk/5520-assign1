@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 import Color from "../helper/Color";
 
@@ -8,7 +8,7 @@ const Card = (props) => {
     <View style={{ ...styles.card, ...props.style }}>{props.children}</View>
   );
 };
-//common card style
+//commonnly used card style
 const styles = StyleSheet.create({
   card: {
     backgroundColor: Color.secondary,

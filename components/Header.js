@@ -3,7 +3,6 @@ import React from "react";
 import Color from "../helper/Color";
 
 export default function Header({ appName }) {
-  //console.log(appName);
   return (
     <View>
       <Text style={styles.header}>{appName} </Text>
